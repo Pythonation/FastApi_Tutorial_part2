@@ -3,6 +3,15 @@ from pydantic import BaseModel
 
 # إنشاء تطبيق FastAPI
 app = FastAPI()
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+  CORSMiddleware,
+  allow_origins=["*"],  # يسمح بالوصول من أي مصدر. قم بتقييد هذا في الإنتاج
+  allow_credentials=True,
+  allow_methods=["*"],
+  allow_headers=["*"],
+)
 
 # تعريف نموذج البيانات باستخدام Pydantic
 class Student(BaseModel):
